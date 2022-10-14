@@ -1,6 +1,15 @@
 package com.student.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler"})
+@Entity
 public class Student {
+
+    @Id
     private long stdID;
     private String name;
     private String city;
