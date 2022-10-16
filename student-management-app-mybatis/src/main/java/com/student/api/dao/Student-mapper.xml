@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--Give the fully qualified mapper java class -->
+<mapper namespace="com.student.com.dao.Student-mapper">
+
+    <resultMap type="student" id="result">
+        <!-- primary key -->
+        <id property="stdID" column="stdID" />
+        <result property="name" column="name" />
+        <result property="city" column="city" />
+        <result property="phoneNum" column="phoneNum" />
+        <result property="standard" column="standard" />
+        <result property="section" column="section" />
+    </resultMap>
+
+    <!-- this all ids should be unique -->
+    <select id="getAllStudents" resultType="student" resultMap="result">
+        SELECT * FROM student
+    </select>
+
+    <insert id="addStudent" parameterType="employee" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO student(fullname, email, gender, hobbies, country, address)
+        VALUES(#{fullname}, #{email}, #{gender}, #{hobbies}, #{country}, #{address})
+    </insert>
+
+    <update id="updateEmployee" parameterType="employee">
+        UPDATE employee SET fullname = #{fullname}, email = #{email}, gender = #{gender}, hobbies = #{hobbies}, country = #{country}, address = #{address}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteEmployee" parameterType="int">
+        DELETE FROM employee WHERE id = #{employeeId}
+    </delete>
+
+    <select id="findById" parameterType="int" resultType="employee" resultMap="result">
+        SELECT * FROM employee WHERE id = #{employeeId}
+    </select>
+</mapper>
