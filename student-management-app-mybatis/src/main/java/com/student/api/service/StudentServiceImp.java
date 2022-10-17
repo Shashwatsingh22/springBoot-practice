@@ -19,44 +19,25 @@ public class StudentServiceImp implements StudentService {
           return studentMapper.getAllStudents();
     }
 
-    //@Override
-//    public Student getStudentById(long stdId) {
-//        return  //studentDao.getById(stdId);
-//                //getReferenceById(stdId);
-//    }
+    @Override
+    public Student getStudentById(long stdId) {
+        return studentMapper.findById(stdId);
+    }
 
-//    @Override
-//    public Student addNewStudent(Student student) {
-////        list.add(student);
-////        return student;
-//        studentDao.save(student);
-//        return student;
-//    }
+    @Override
+    public Student addNewStudent(Student student) {
+        studentMapper.save(student);
+        return student;
+    }
 
-//    @Override
-//    public Student updateData(Student student) {
-//
-////        for (Student std: list) {
-////            if(std.getStdID() == student.getStdID())
-////            {
-////                std.setName(student.getName());
-////                std.setCity(student.getCity());
-////                std.setSection(student.getSection());
-////                std.setPhoneNum(student.getPhoneNum());
-////                std.setStandard(student.getStandard());
-////            }
-////        }
-//          studentDao.save(student);
-//          return student;
-//    }
-//
-//    @Override
-//    public void deleteStudentById(long stdId) {
-//
-////        list = this.list.stream().filter(
-////                e->e.getStdID()!=stdId
-////        ).collect(Collectors.toList());
-//
-//         studentDao.deleteById(stdId);
-//    }
+    @Override
+    public Student updateData(Student student) {
+          studentMapper.updateStdData(student);
+          return student;
+    }
+
+    @Override
+    public void deleteStudentById(long stdId) {
+         studentMapper.deleteById(stdId);
+    }
 }
